@@ -87,7 +87,7 @@ url = accthttp + str('TrialQueue')
 # print(receipt)
 
 while True:
-    receipt = client.Queue(url=url).receive_messages(MaxNumberOfMessages=10)
+    receipt = client.Queue(url=url).receive_messages(MaxNumberOfMessages=4)
 
     for cell in receipt:
         print("\nSearching for: ",cell.body)

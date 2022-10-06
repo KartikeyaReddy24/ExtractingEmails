@@ -16,4 +16,4 @@ RUN python -m pip install xlsxwriter
 
 # COPY . /app
 
-CMD ["python","./ExtractEmails_v1.10.py"]
+CMD ["python","./ExtractEmails_v2.2.py"]

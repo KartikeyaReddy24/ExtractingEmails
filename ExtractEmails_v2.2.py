@@ -12,17 +12,17 @@ import boto3
 from botocore.exceptions import NoCredentialsError
 from datetime import datetime
 
-ACCESS_KEY = os.getenv('ak')
-SECRET_KEY = os.environ.get('sk')
-ACCESS_KEY = 'AKIAXFEZEMGXMQUCUXIC'
-SECRET_KEY = '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'
+ACCESS_KEY_S3 = os.getenv('ak_s3')
+SECRET_KEY_S3 = os.environ.get('sk_s3')
+ACCESS_KEY_SQS = os.getenv('ak_sqs')
+SECRET_KEY_SQS = os.environ.get('sk_sqs')
 # UnixTime=time.mktime(time.strptime('2000-01-01 12:34:00', '%Y-%m-%d %H:%M:%S'))
-dt = datetime.fromisoformat('2019-09-10T01:23:45+00:00')
+# dt = datetime.fromisoformat('2019-09-10T01:23:45+00:00')
 
 
 def upload_to_aws(local_file, bucket, s3_file):
-    s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY,
-                    aws_secret_access_key=SECRET_KEY)
+    s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY_S3,
+                    aws_secret_access_key=SECRET_KEY_S3)
 
     try:
         s3.upload_file(local_file, bucket, s3_file)
@@ -36,11 +36,11 @@ def upload_to_aws(local_file, bucket, s3_file):
         return False
 
 # Get environment variables
-MINIMUM =  1 #os.getenv('min_val')
-MAXIMUM = 8 #os.environ.get('max_val')
+# MINIMUM =  1 #os.getenv('min_val')
+# MAXIMUM = 8 #os.environ.get('max_val')
 
-print("The Minimum row: ",MINIMUM)
-print("The Maximum row: ",MAXIMUM)
+# print("The Minimum row: ",MINIMUM)
+# print("The Maximum row: ",MAXIMUM)
 
 start_time = time.time()
 
@@ -58,8 +58,8 @@ Nooflinkssearched=[]
 ############################################ SQS CODE HERE
 
 ########################################INITIALIZE CONNECTION TO AWS VIA BOTO3 'CLIENT'#############################################
-client = boto3.resource('sqs',aws_access_key_id='AKIAXFEZEMGXLZLDHQEX',
-    aws_secret_access_key='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',region_name='us-east-1')
+client = boto3.resource('sqs',aws_access_key_id=ACCESS_KEY_SQS,
+    aws_secret_access_key=SECRET_KEY_SQS,region_name='us-east-1')
 
 accthttp='https://sqs.us-east-1.amazonaws.com/492094906798/'
 
@@ -87,7 +87,7 @@ url = accthttp + str('TrialQueue')
 # print(receipt)
 
 while True:
-    receipt = client.Queue(url=url).receive_messages(MaxNumberOfMessages=2)
+    receipt = client.Queue(url=url).receive_messages(MaxNumberOfMessages=10)
 
     for cell in receipt:
         print("\nSearching for: ",cell.body)

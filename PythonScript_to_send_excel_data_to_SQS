@@ -1,0 +1,60 @@
+from tld import get_tld
+from openpyxl import load_workbook
+from googlesearch import search
+from tld import get_tld
+import re
+import requests
+import pandas as pd
+import time
+import random
+import os
+import boto3
+from botocore.exceptions import NoCredentialsError
+
+
+start_time = time.time()
+
+
+book = load_workbook('item.xlsx')
+sheet = book.active
+# print(sheet)
+
+
+########################################INITIALIZE CONNECTION TO AWS VIA BOTO3 'CLIENT'#############################################
+client = boto3.resource('sqs',aws_access_key_id='AKIAXFEZEMGXLZLDHQEX',
+    aws_secret_access_key='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',region_name='us-east-1')
+
+accthttp='https://sqs.us-east-1.amazonaws.com/492094906798/'
+
+###INPUT THE IAM CREDENTIALS WITH PERMISSIONS TO THE AWS ACCOUNT AND RESOURCE YOU'RE TRYING TO ACCESS.
+
+
+
+################################################CREATE SQS-QUEUES IN THE CLIENT-CONNECTED ACCOUNT##########################################
+# response = client.create_queue(
+#      QueueName='TrialQueue'
+# )
+# print(response)
+
+print("##########################################")
+print("AVAILABLE QUEUES : URLS")
+
+#The response is NOT a resource, but gives you a message ID and MD5
+for queue in client.queues.all():
+    print(queue.url)
+#
+print("##########################################")
+########################################################SQS SEND OR RECEIVE###############################################
+
+url = accthttp+str('TrialQueue')
+# dato = pd.read_excel('item.xlsx',engine='openpyxl')
+
+book = load_workbook('listed.xlsx')
+sheet = book.active
+
+for row in sheet.iter_rows(min_row=0,max_row=60000):
+    for cell in row:
+            store3 = cell.value
+            print(store3)
+            client.Queue(url=url).send_message(
+                MessageBody=store3)

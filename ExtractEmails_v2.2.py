@@ -88,6 +88,7 @@ url = accthttp + str('TrialQueue')
 
 while True:
     receipt = client.Queue(url=url).receive_messages(MaxNumberOfMessages=4)
+    req_session=requests.session()
 
     for cell in receipt:
         print("\nSearching for: ",cell.body)
@@ -102,11 +103,11 @@ while True:
             #print("count ",count)
             if count>0 and count % 18 == 0:
                 print(f'\n\n\t\t::::::::::: You have now reached maximun Websearches. Please wait :::::::::::\n\n')
-                time.sleep(300)
+                time.sleep(360)
             count+=1
             #print("\nFor loop started. Wait 30 seconds\n")
             random.uniform(30,60)
-            time.sleep(15)
+            time.sleep(16)
             LinksCount +=1
             print(f'\n\n\tNo. of Web Searches: {LinksCount}\n\tExtracting Emails in: {i}')
             #print(i)
@@ -115,7 +116,7 @@ while True:
             try:
                 #print("\nYou are at Extracting Emails. Wait for 18 seconds\n")
                 # random.uniform(30,60)
-                time.sleep(16)
+                time.sleep(18)
                 EMAIL_REGEX= r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+"      #r'[\w.+-]+@[\w-]+\.[\w.-]+'        #r'(?:\.?)([\w\-_+#~!$&\'\.]+(?<!\.)(@|[ ]?\(?[ ]?(at|AT)[ ]?\)?[ ]?)(?<!\.)[\w]+[\w\-\.]*\.[a-zA-Z-]{2,3})(?:[^\w])'  #re.findall(r'[\w.+-]+@[\w-]+\.[\w.-]+')            # r"[\w\.-]+@[\w\.-]+"
                 #phone = r'\(?\b[2-9][0-9]{2}\)?[-][2-9][0-9]{2}[-][0-9]{4}\b'
                 r=requests.get(i, headers=headers)
@@ -127,6 +128,7 @@ while True:
             except:
                 print("\n\tNot Found: ",i)
                 NotFoundLink.add(i)
+        req_session.cookies.clear()
         cell.delete(QueueUrl=url, ReceiptHandle=cell.receipt_handle)
         print("\n\n\tThis SQS message is now deleted.")
         time.sleep(10)

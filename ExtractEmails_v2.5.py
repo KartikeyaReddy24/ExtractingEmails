@@ -159,7 +159,7 @@ while True:
 
     file_name=str(timestamp)+"_"+str(namegenerator.gen())
 
-    file_name_list.append()
+    file_name_list.append(file_name)
 
     with pd.ExcelWriter(str(file_name)+".xlsx", engine='xlsxwriter') as writer:    
         # Write each dataframe to a different worksheet.

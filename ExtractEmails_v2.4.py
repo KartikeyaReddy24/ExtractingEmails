@@ -155,7 +155,7 @@ while True:
     currentDateTime = datetime.now()
     timestamp = datetime.timestamp(currentDateTime)
 
-    with pd.ExcelWriter(str(timestamp)+"_"+str(namegenerator.get())+".xlsx", engine='xlsxwriter') as writer:    
+    with pd.ExcelWriter(str(timestamp)+"_"+str(namegenerator.gen())+".xlsx", engine='xlsxwriter') as writer:    
         # Write each dataframe to a different worksheet.
         searchData.to_excel(writer, sheet_name='Websearch Cell & Emails')
         searchlinks.to_excel(writer, sheet_name='LinksSearched')
@@ -180,7 +180,7 @@ while True:
     print("\n\t----------- Time Taken For Execution: %s  -----------\n\n" % (convert(time.time() - start_time)))
     
     for file in os.listdir():
-        if file.endswith(str(timestamp)+"_"+str(namegenerator.get())+".xlsx"):
+        if file.endswith(str(timestamp)+"_"+str(namegenerator.gen())+".xlsx"):
             print("\n\tThis is the file:::::::::::::::",file)
             print("\n\n\t\t",os.path.dirname(os.path.realpath(__file__)))
             # upload_file_bucket= 'extract.emails.storage'

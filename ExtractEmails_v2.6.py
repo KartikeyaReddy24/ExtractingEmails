@@ -120,7 +120,8 @@ while True:
                 #print("\nYou are at Extracting Emails. Wait for 18 seconds\n")
                 # random.uniform(30,60)
                 time.sleep(18)
-                EMAIL_REGEX= r"-*([\w\-\.]{1,100}@(?:\w[\w\-]+\.)+(?!jpg)(?!png)(?!wixpress.com)(?!email.com)(?!sentry-viewer.wixpress.com)(?!js)(?!2x.gif)(?!sentry.o2dev.net)(?!gif)(?!sentry.wixpress.com)(?!sentry-next.wixpress.com)(?!example.com)(?!sentry.io)(?!aphixsoftware.com)[\w]+)-*" 
+                EMAIL_REGEX= r"-*([\w\-\.]{1,100}@(?!example.com)(?!wixpress.com)(?!email.com)(?!sentry-viewer.wixpress.com)(?!2x.gif)(?!sentry.o2dev.net)(?!2x.png.com)(?!sentry.wixpress.com)(?!sentry-next.wixpress.com)(?!sentry.io)(?!16.14.0.com)(?!aphixsoftware.com)(?:\w[\w\-]+\.)+(?!jpg)(?!png)(?!js)(?!gif)[\w]+)-*"
+                #r"-*([\w\-\.]{1,100}@(?:\w[\w\-]+\.)+(?!jpg)(?!png)(?!wixpress.com)(?!email.com)(?!sentry-viewer.wixpress.com)(?!js)(?!2x.gif)(?!sentry.o2dev.net)(?!gif)(?!sentry.wixpress.com)(?!sentry-next.wixpress.com)(?!example.com)(?!sentry.io)(?!aphixsoftware.com)[\w]+)-*" 
                 #r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+"      #r'[\w.+-]+@[\w-]+\.[\w.-]+'        #r'(?:\.?)([\w\-_+#~!$&\'\.]+(?<!\.)(@|[ ]?\(?[ ]?(at|AT)[ ]?\)?[ ]?)(?<!\.)[\w]+[\w\-\.]*\.[a-zA-Z-]{2,3})(?:[^\w])'  #re.findall(r'[\w.+-]+@[\w-]+\.[\w.-]+')            # r"[\w\.-]+@[\w\.-]+"
                 #phone = r'\(?\b[2-9][0-9]{2}\)?[-][2-9][0-9]{2}[-][0-9]{4}\b'
                 r=requests.get(i, headers=headers)

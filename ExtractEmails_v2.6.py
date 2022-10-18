@@ -86,7 +86,7 @@ for queue in client.queues.all():
 print("##########################################")
 ########################################################SQS SEND OR RECEIVE###############################################
 
-url = accthttp + str('TrialQueue')
+url = accthttp + str('PreProductionSQSTest')
 # print(receipt)
 
 while True:

@@ -159,7 +159,7 @@ while True:
 
     # file_name_list=[]
 
-    file_name=str(uuid.uuid4()).hex #str(timestamp)+"_"+str(namegenerator.gen())
+    file_name=str(uuid.uuid4().hex) #str(timestamp)+"_"+str(namegenerator.gen())
     print("\n\t\tThe File name alloted: ",file_name)
     
 

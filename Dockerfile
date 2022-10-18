@@ -34,7 +34,7 @@ RUN python3 -m pip install xlsxwriter
 
 # ENTRYPOINT ["python"]
 
-CMD [ "python3", "ExtractEmails_v2.5.py" ]
+CMD [ "python3", "ExtractEmails_v2.6.py" ]
 
 
 

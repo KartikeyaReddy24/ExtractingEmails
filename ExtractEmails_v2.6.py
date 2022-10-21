@@ -86,7 +86,7 @@ for queue in client.queues.all():
 print("##########################################")
 ########################################################SQS SEND OR RECEIVE###############################################
 
-url = accthttp + str('PreProductionSQSTest')
+url = accthttp + str('CollegePrductionService')
 # print(receipt)
 
 while True:
@@ -197,5 +197,5 @@ while True:
             # upload_file_bucket= 'extract.emails.storage'
             # upload_file_key= 'Container_Output/'+ str(file)
             # uploaded = upload_to_aws('extract.emails.storage', 'Industries_"+str(MINIMUM)+"_"+str(MAXIMUM)+".xlsx')
-            uploaded = upload_to_aws(os.path.dirname(os.path.realpath(__file__))+"/"+file,'extract.emails.storage',  "IRL_Production/"+file)
+            uploaded = upload_to_aws(os.path.dirname(os.path.realpath(__file__))+"/"+file,'extract.emails.storage',  "College_ProductionService/"+file)
             # file_name_list.clear()

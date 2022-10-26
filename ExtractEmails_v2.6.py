@@ -90,7 +90,7 @@ url = accthttp + str('CollegePrductionService')
 # print(receipt)
 
 while True:
-    receipt = client.Queue(url=url).receive_messages(MaxNumberOfMessages=4)
+    receipt = client.Queue(url=url).receive_messages(MaxNumberOfMessages=2)
     req_session=requests.session()
 
     for cell in receipt:
